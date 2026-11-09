@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Formulario de profesor')}"></head>
+<body>
+	<nav th:replace="~{layout :: menu}"></nav>
+	<main class="container mt-5">
+		<div class="card shadow">
+			<div class="card-header encabezado">
+				<h1 class="h3">Formulario de profesor</h1>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/profesor/guardar}" th:object="${profesorForm}" method="post">
+					<input type="hidden" th:field="*{id}">
+					<div class="mb-3">
+						<label class="form-label">Nombre completo</label>
+						<input type="text" class="form-control" th:field="*{nombreCompleto}" required>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Profesión</label>
+						<input type="text" class="form-control" th:field="*{profesion}">
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Colegiado</label>
+						<input type="text" class="form-control" th:field="*{colegiado}">
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Dirección</label>
+						<input type="text" class="form-control" th:field="*{direccion}">
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Teléfono</label>
+						<input type="text" class="form-control" th:field="*{telefono}">
+					</div>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					<a class="btn btn-secondary" th:href="@{/profesor/listar}">Cancelar</a>
+				</form>
+			</div>
+		</div>
+	</main>
+	<footer th:replace="~{layout :: pie}"></footer>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Inicio')}"></head>
+<body>
+	<nav th:replace="~{layout :: menu}"></nav>
+	<main class="container mt-5">
+		<div class="p-5 mb-4 rounded-3 encabezado shadow">
+			<h1>Control Académico</h1>
+			<p class="lead">Administración de alumnos, profesores y asignación de cursos.</p>
+		</div>
+		<div class="row">
+			<div class="col-md-4 mb-3">
+				<div class="card shadow text-center">
+					<div class="card-body">
+						<h5 class="card-title">Alumnos</h5>
+						<p class="display-6" th:text="${totalAlumnos}"></p>
+						<a class="btn btn-primary" th:href="@{/alumno/listar}">Ver alumnos</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 mb-3">
+				<div class="card shadow text-center">
+					<div class="card-body">
+						<h5 class="card-title">Profesores</h5>
+						<p class="display-6" th:text="${totalProfesores}"></p>
+						<a class="btn btn-primary" th:href="@{/profesor/listar}">Ver profesores</a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-4 mb-3">
+				<div class="card shadow text-center">
+					<div class="card-body">
+						<h5 class="card-title">Cursos</h5>
+						<p class="display-6" th:text="${totalCursos}"></p>
+						<a class="btn btn-primary" th:href="@{/curso/listar}">Ver cursos</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</main>
+	<footer th:replace="~{layout :: pie}"></footer>
+</body>
+</html>

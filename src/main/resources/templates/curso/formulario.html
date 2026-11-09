@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Formulario de curso')}"></head>
+<body>
+	<nav th:replace="~{layout :: menu}"></nav>
+	<main class="container mt-5">
+		<div class="card shadow">
+			<div class="card-header encabezado">
+				<h1 class="h3">Formulario de curso</h1>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/curso/guardar}" th:object="${cursoForm}" method="post">
+					<input type="hidden" th:field="*{id}">
+					<div class="row">
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Nombre</label>
+							<input type="text" class="form-control" th:field="*{nombre}" required>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Horario</label>
+							<input type="text" class="form-control" th:field="*{horario}">
+						</div>
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Salón</label>
+							<input type="text" class="form-control" th:field="*{salon}">
+						</div>
+						<div class="col-md-6 mb-3">
+							<label class="form-label">Facultad</label>
+							<input type="text" class="form-control" th:field="*{facultad}">
+						</div>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Profesor asignado</label>
+						<select class="form-select" name="profesorId">
+							<option value="">-- Seleccione un profesor --</option>
+							<option th:each="p : ${profesores}" th:value="${p.id}" th:text="${p.nombreCompleto}"
+								th:selected="${cursoForm.profesor != null and cursoForm.profesor.id == p.id}"></option>
+						</select>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Alumnos inscritos</label>
+						<div class="border rounded p-3 bg-white">
+							<div class="form-check" th:each="a : ${alumnos}">
+								<input class="form-check-input" type="checkbox" name="alumnosIds" th:value="${a.id}"
+									th:id="'alumno' + ${a.id}" th:checked="${#lists.contains(cursoForm.alumnos.![id], a.id)}">
+								<label class="form-check-label" th:for="'alumno' + ${a.id}"
+									th:text="${a.carne} + ' - ' + ${a.nombreCompleto}"></label>
+							</div>
+							<p class="text-muted mb-0" th:if="${alumnos.isEmpty()}">No hay alumnos registrados.</p>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					<a class="btn btn-secondary" th:href="@{/curso/listar}">Cancelar</a>
+				</form>
+			</div>
+		</div>
+	</main>
+	<footer th:replace="~{layout :: pie}"></footer>
+</body>
+</html>

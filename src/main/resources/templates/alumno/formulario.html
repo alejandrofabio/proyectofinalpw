@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Formulario de alumno')}"></head>
+<body>
+	<nav th:replace="~{layout :: menu}"></nav>
+	<main class="container mt-5">
+		<div class="card shadow">
+			<div class="card-header encabezado">
+				<h1 class="h3">Formulario de alumno</h1>
+			</div>
+			<div class="card-body">
+				<form th:action="@{/alumno/guardar}" th:object="${alumnoForm}" method="post">
+					<input type="hidden" th:field="*{id}">
+					<div class="mb-3">
+						<label class="form-label">Nombre completo</label>
+						<input type="text" class="form-control" th:field="*{nombreCompleto}" required>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Carné</label>
+						<input type="text" class="form-control" th:field="*{carne}" required>
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Dirección</label>
+						<input type="text" class="form-control" th:field="*{direccion}">
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Facultad</label>
+						<input type="text" class="form-control" th:field="*{facultad}">
+					</div>
+					<div class="mb-3">
+						<label class="form-label">Observaciones</label>
+						<textarea class="form-control" rows="3" th:field="*{observaciones}"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary">Guardar</button>
+					<a class="btn btn-secondary" th:href="@{/alumno/listar}">Cancelar</a>
+				</form>
+			</div>
+		</div>
+	</main>
+	<footer th:replace="~{layout :: pie}"></footer>
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{layout :: head('Detalle de curso')}"></head>
+<body>
+	<nav th:replace="~{layout :: menu}"></nav>
+	<main class="container mt-5">
+		<div class="card shadow mb-4">
+			<div class="card-header encabezado">
+				<h1 class="h3" th:text="${curso.nombre}"></h1>
+			</div>
+			<div class="card-body">
+				<p><strong>Horario:</strong> <span th:text="${curso.horario}"></span></p>
+				<p><strong>Salón:</strong> <span th:text="${curso.salon}"></span></p>
+				<p><strong>Facultad:</strong> <span th:text="${curso.facultad}"></span></p>
+			</div>
+		</div>
+
+		<div class="card shadow mb-4">
+			<div class="card-header bg-primary text-white">
+				<h2 class="h5 mb-0">Profesor asignado</h2>
+			</div>
+			<div class="card-body">
+				<div th:if="${curso.profesor != null}">
+					<p><strong>Nombre:</strong> <span th:text="${curso.profesor.nombreCompleto}"></span></p>
+					<p><strong>Profesión:</strong> <span th:text="${curso.profesor.profesion}"></span></p>
+					<p><strong>Colegiado:</strong> <span th:text="${curso.profesor.colegiado}"></span></p>
+					<p class="mb-0"><strong>Teléfono:</strong> <span th:text="${curso.profesor.telefono}"></span></p>
+				</div>
+				<p class="text-muted mb-0" th:if="${curso.profesor == null}">Este curso no tiene profesor asignado.</p>
+			</div>
+		</div>
+
+		<div class="card shadow">
+			<div class="card-header bg-success text-white">
+				<h2 class="h5 mb-0">Alumnos inscritos</h2>
+			</div>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-hover table-striped">
+						<thead class="table-dark">
+							<tr>
+								<th>CARNÉ</th>
+								<th>NOMBRE COMPLETO</th>
+								<th>FACULTAD</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="a : ${curso.alumnos}">
+								<td th:text="${a.carne}"></td>
+								<td th:text="${a.nombreCompleto}"></td>
+								<td th:text="${a.facultad}"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<p class="text-muted" th:if="${curso.alumnos.isEmpty()}">No hay alumnos inscritos en este curso.</p>
+				<a class="btn btn-secondary" th:href="@{/curso/listar}">Regresar</a>
+			</div>
+		</div>
+	</main>
+	<footer th:replace="~{layout :: pie}"></footer>
+</body>
+</html>

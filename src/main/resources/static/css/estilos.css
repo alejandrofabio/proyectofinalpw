@@ -1,0 +1,24 @@
+body {
+	background-color: #f0f3f8;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.navbar {
+	background-color: #002d6e;
+}
+
+.encabezado {
+	background-color: #002d6e;
+	color: white;
+}
+
+main {
+	flex: 1;
+}
+
+footer {
+	background-color: #c8502d;
+	color: white;
+}
