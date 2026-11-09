@@ -42,7 +42,7 @@
 						<div class="border rounded p-3 bg-white">
 							<div class="form-check" th:each="a : ${alumnos}">
 								<input class="form-check-input" type="checkbox" name="alumnosIds" th:value="${a.id}"
-									th:id="'alumno' + ${a.id}" th:checked="${#lists.contains(cursoForm.alumnos.![id], a.id)}">
+									th:id="'alumno' + ${a.id}" th:checked="${cursoForm.alumnos.![id].contains(a.id)}">
 								<label class="form-check-label" th:for="'alumno' + ${a.id}"
 									th:text="${a.carne} + ' - ' + ${a.nombreCompleto}"></label>
 							</div>

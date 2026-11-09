@@ -1,7 +1,7 @@
 package com.regional.proyectofinal.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -29,7 +29,7 @@ public class Curso {
 
 	@ManyToMany
 	@JoinTable(name = "asignacion", joinColumns = @JoinColumn(name = "curso_id"), inverseJoinColumns = @JoinColumn(name = "alumno_id"))
-	private List<Alumno> alumnos = new ArrayList<>();
+	private Set<Alumno> alumnos = new HashSet<>();
 
 	public Long getId() {
 		return id;
@@ -79,11 +79,11 @@ public class Curso {
 		this.profesor = profesor;
 	}
 
-	public List<Alumno> getAlumnos() {
+	public Set<Alumno> getAlumnos() {
 		return alumnos;
 	}
 
-	public void setAlumnos(List<Alumno> alumnos) {
+	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
 	}
 }

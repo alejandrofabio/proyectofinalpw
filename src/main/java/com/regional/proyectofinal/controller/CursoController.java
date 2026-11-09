@@ -1,5 +1,6 @@
 package com.regional.proyectofinal.controller;
 
+import java.util.HashSet;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class CursoController {
 			curso.setProfesor(null);
 		}
 		if (alumnosIds != null) {
-			curso.setAlumnos(alumnoRepo.findAllById(alumnosIds));
+			curso.setAlumnos(new HashSet<>(alumnoRepo.findAllById(alumnosIds)));
 		}
 		repo.save(curso);
 		return "redirect:/curso/listar";
